@@ -4,6 +4,7 @@ import main.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Door extends SuperObject{
 
@@ -15,7 +16,7 @@ public class Door extends SuperObject{
 
         name = "Door";
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/objects/door.png"));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/objects/door.png")));
             uTool.scaleImage(image, gp.tileSize, gp.tileSize);
         }catch(IOException e) {
             e.printStackTrace();
