@@ -1,12 +1,14 @@
 package main;
 
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class UI {
 
     GamePanel gp;
     Graphics2D g2;
-    Font arial_40, arial_80B;
+    Font maruMonica;
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
@@ -16,8 +18,12 @@ public class UI {
     public UI(GamePanel gp) {
         this.gp = gp;
 
-        arial_40 = new Font("Arial", Font.PLAIN, 40);
-        arial_80B = new Font("Arial", Font.BOLD, 80);
+        try {
+            InputStream is = getClass().getResourceAsStream("/font/x12y16pxMaruMonica.ttf");
+            maruMonica = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (FontFormatException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void showMessage(String text) {
@@ -30,7 +36,7 @@ public class UI {
 
         this.g2 = g2;
 
-        g2.setFont(arial_40);
+        g2.setFont(maruMonica);
         g2.setColor(Color.white);
 
         if(gp.gameState == gp.playState) {
@@ -46,7 +52,7 @@ public class UI {
 
     public void drawPauseScreen() {
 
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 120F));
         String text = "PAUSED";
         int x = getXforCenteredText(text);
         int y = gp.screenHeight/2;
@@ -64,7 +70,7 @@ public class UI {
 
         drawSubWindow(x, y, width, height);
 
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 48));
         x += gp.tileSize;
         y += gp.tileSize;
 
