@@ -82,6 +82,10 @@ public class Player extends Entity {
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
 
+            // Check Monster collision
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
+
             // Check event
             gp.eHandler.checkEvent();
 
@@ -107,6 +111,15 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         }
+
+        // This needs to be outside of key if statement
+        if(invincible) {
+            invincibleCounter++;
+            if(invincibleCounter > 60) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
 
     public void pickUpObject(int i) {
@@ -123,6 +136,17 @@ public class Player extends Entity {
             if(gp.keyH.ePressed) {
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
+            }
+        }
+    }
+
+    public void contactMonster(int i) {
+
+        if(i != 999) {
+
+            if(!invincible) {
+                life -= 1;
+                invincible = true;
             }
         }
     }
@@ -166,6 +190,14 @@ public class Player extends Entity {
             }
         }
 
+        // Set alpha to Graphics2D if player receives damage
+        if(invincible) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
+
         g2.drawImage(image, screenX, screenY, null);
+
+        // Reset alpha
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 }
