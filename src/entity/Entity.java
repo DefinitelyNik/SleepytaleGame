@@ -30,12 +30,14 @@ public class Entity {
     boolean attacking = false;
     public boolean alive = true;
     public boolean dying = false;
+    boolean hpBarOn = false;
 
     // Counters
     public int invincibleCounter = 0;
     public int actionLockCounter = 0;
     public int spriteCounter = 0;
     int dyingCounter = 0;
+    int hpBarCounter = 0;
 
     // Character attributes
     public Rectangle solidArea = new Rectangle(0, 0, 64, 64);
@@ -85,6 +87,7 @@ public class Entity {
 
         if(this.type == 2 && contactPlayer) {
             if(!gp.player.invincible) {
+                gp.playSE(6);
                 gp.player.life -= 1;
                 gp.player.invincible = true;
             }
@@ -149,9 +152,30 @@ public class Entity {
                 }
             }
 
+            // Monster hp bar
+            if(type == 2 && hpBarOn) {
+                double oneScale = (double)gp.tileSize/maxLife;
+                double hpBarValue = oneScale*life;
+
+                g2.setColor(new Color(35, 35, 35));
+                g2.fillRect(screenX-1, screenY-16, gp.tileSize+2, 12);
+
+                g2.setColor(new Color(255, 0 ,30));
+                g2.fillRect(screenX,screenY-15, (int)hpBarValue, 10);
+
+                hpBarCounter++;
+
+                if(hpBarCounter > 600) {
+                    hpBarCounter = 0;
+                    hpBarOn = false;
+                }
+            }
+
             // Set alpha to Graphics2D if entity receives damage
             if(invincible) {
-                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+                hpBarOn = true;
+                hpBarCounter = 0;
+                changeAlpha(g2,0.4f);
             }
 
             if(dying) {
@@ -161,7 +185,7 @@ public class Entity {
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
             // Reset alpha
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+            changeAlpha(g2, 1f);
         }
     }
 
