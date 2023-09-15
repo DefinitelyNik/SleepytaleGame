@@ -228,10 +228,10 @@ public class UI {
     public void drawCharacterScreen() {
 
         // Create a frame
-        final int frameX = gp.tileSize*2;
+        final int frameX = gp.tileSize;
         final int frameY = gp.tileSize;
         final int frameWidth = gp.tileSize*5;
-        final int frameHeight = gp.tileSize*10;
+        final int frameHeight = gp.tileSize*9;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         // Text
