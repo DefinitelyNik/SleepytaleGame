@@ -2,7 +2,6 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-import object.Door;
 import object.Key;
 import object.NormalSword;
 import object.WoodenShield;
@@ -72,16 +71,6 @@ public class Player extends Entity {
 
         inventory.add(currentWeapon);
         inventory.add(currentShield);
-        inventory.add(new Key(gp));
-        inventory.add(new Key(gp));
-        inventory.add(new Door(gp));
-        inventory.add(new Door(gp));
-        inventory.add(new Door(gp));
-        inventory.add(new Door(gp));
-        inventory.add(new Door(gp));
-        inventory.add(new Key(gp));
-        inventory.add(new Key(gp));
-        inventory.add(new Key(gp));
         inventory.add(new Key(gp));
     }
 
