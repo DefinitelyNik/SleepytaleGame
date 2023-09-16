@@ -2,11 +2,14 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.Door;
+import object.Key;
 import object.NormalSword;
 import object.WoodenShield;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Player extends Entity {
 
@@ -14,6 +17,8 @@ public class Player extends Entity {
 
     public final int screenX, screenY;
     public boolean attackCanceled = false;
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int maxInventorySize = 20;
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
@@ -38,6 +43,7 @@ public class Player extends Entity {
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackImages();
+        setItems();
     }
 
     public void setDefaultValues() {
@@ -60,6 +66,23 @@ public class Player extends Entity {
         currentShield = new WoodenShield(gp);
         attack = getAttack(); // getting total attack value with strength and weapon attack values
         defence = getDefence(); // getting total defence value with dexterity and shield defence values
+    }
+
+    public void setItems() {
+
+        inventory.add(currentWeapon);
+        inventory.add(currentShield);
+        inventory.add(new Key(gp));
+        inventory.add(new Key(gp));
+        inventory.add(new Door(gp));
+        inventory.add(new Door(gp));
+        inventory.add(new Door(gp));
+        inventory.add(new Door(gp));
+        inventory.add(new Door(gp));
+        inventory.add(new Key(gp));
+        inventory.add(new Key(gp));
+        inventory.add(new Key(gp));
+        inventory.add(new Key(gp));
     }
 
     public int getAttack() {
