@@ -5,6 +5,7 @@ import monster.GreenSlime;
 import object.Axe;
 import object.BlueShield;
 import object.Key;
+import object.RedPotion;
 
 public class AssetSetter {
 
@@ -41,6 +42,11 @@ public class AssetSetter {
         gp.obj[i] = new BlueShield(gp);
         gp.obj[i].worldX = gp.tileSize*35;
         gp.obj[i].worldY = gp.tileSize*21;
+        i++;
+
+        gp.obj[i] = new RedPotion(gp);
+        gp.obj[i].worldX = gp.tileSize*22;
+        gp.obj[i].worldY = gp.tileSize*27;
         i++;
     }
 
