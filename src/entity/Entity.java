@@ -43,7 +43,6 @@ public class Entity {
     public Rectangle solidArea = new Rectangle(0, 0, 64, 64);
     public Rectangle attackArea = new Rectangle(0,0,0,0);
     public int solidAreaDefaultX,solidAreaDefaultY;
-    public int type; // 0 = player, 1 = npc, 2 = monster
     public String name;
     public int speed;
     public int maxLife;
@@ -63,6 +62,16 @@ public class Entity {
     public int attackValue;
     public int defenceValue;
     public String description = "";
+
+    // Type
+    public int type; // 0 = player, 1 = npc, 2 = monster
+    public final int playerType = 0;
+    public final int npcType = 1;
+    public final int monsterType = 2;
+    public final int swordType = 3;
+    public final int axeType = 4;
+    public final int shieldType = 5;
+    public final int consumableType = 6;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -104,7 +113,7 @@ public class Entity {
         gp.cChecker.checkEntity(this, gp.monster);
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
-        if(this.type == 2 && contactPlayer) {
+        if(this.type == monsterType && contactPlayer) {
             if(!gp.player.invincible) {
                 gp.playSE(6);
 
