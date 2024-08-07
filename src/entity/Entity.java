@@ -36,6 +36,7 @@ public class Entity {
     public int invincibleCounter = 0;
     public int actionLockCounter = 0;
     public int spriteCounter = 0;
+    public int shotAvailableCounter = 0;
     int dyingCounter = 0;
     int hpBarCounter = 0;
 
@@ -47,6 +48,8 @@ public class Entity {
     public int speed;
     public int maxLife;
     public int life;
+    public int maxMana;
+    public int mana;
     public int level;
     public int strength;
     public int dexterity;
@@ -57,11 +60,13 @@ public class Entity {
     public int money;
     public Entity currentWeapon;
     public Entity currentShield;
+    public Projectile projectile;
 
     // Item attributes
     public int attackValue;
     public int defenceValue;
     public String description = "";
+    public int useCost;
 
     // Type
     public int type; // 0 = player, 1 = npc, 2 = monster
