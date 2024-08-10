@@ -54,6 +54,9 @@ public class Player extends Entity {
         level = 1;
         maxLife = 6;
         life = maxLife;
+        maxMana = 4;
+        mana = maxMana;
+        ammo = 10; // ammo for testing other projectiles
         strength = 1; // the more strength player has, the more damage he deals;
         dexterity = 1; // the more dexterity player has, the less damage he receives;
         exp = 0;
@@ -184,10 +187,14 @@ public class Player extends Entity {
             }
         }
 
-        if(gp.keyH.shotKeyPressed && !projectile.alive && shotAvailableCounter == 30) {
+        if(gp.keyH.shotKeyPressed && !projectile.alive
+                && shotAvailableCounter == 30 && projectile.haveResource(this)) {
 
             //Set default coordinates, direction and user
             projectile.set(worldX, worldY, direction, true, this);
+
+            //Subtract the cost of using the projectile
+            projectile.subtractResource(this);
 
             //Add it to the list
             gp.projectileList.add(projectile);
