@@ -2,10 +2,7 @@ package main;
 
 import entity.OldMan;
 import monster.GreenSlime;
-import object.Axe;
-import object.BlueShield;
-import object.Key;
-import object.RedPotion;
+import object.*;
 
 public class AssetSetter {
 
@@ -19,12 +16,12 @@ public class AssetSetter {
     public void setObject() {
 
         int i = 0;
-        gp.obj[i] = new Key(gp);
+        gp.obj[i] = new BronzeCoin(gp);
         gp.obj[i].worldX = gp.tileSize*25;
         gp.obj[i].worldY = gp.tileSize*23;
         i++;
 
-        gp.obj[i] = new Key(gp);
+        gp.obj[i] = new BronzeCoin(gp);
         gp.obj[i].worldX = gp.tileSize*21;
         gp.obj[i].worldY = gp.tileSize*19;
         i++;
@@ -47,6 +44,16 @@ public class AssetSetter {
         gp.obj[i] = new RedPotion(gp);
         gp.obj[i].worldX = gp.tileSize*22;
         gp.obj[i].worldY = gp.tileSize*27;
+        i++;
+
+        gp.obj[i] = new Heart(gp);
+        gp.obj[i].worldX = gp.tileSize*22;
+        gp.obj[i].worldY = gp.tileSize*29;
+        i++;
+
+        gp.obj[i] = new ManaCrystal(gp);
+        gp.obj[i].worldX = gp.tileSize*22;
+        gp.obj[i].worldY = gp.tileSize*31;
         i++;
     }
 

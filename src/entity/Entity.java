@@ -64,6 +64,7 @@ public class Entity {
     public Projectile projectile;
 
     // Item attributes
+    public int value;
     public int attackValue;
     public int defenceValue;
     public String description = "";
@@ -78,6 +79,7 @@ public class Entity {
     public final int axeType = 4;
     public final int shieldType = 5;
     public final int consumableType = 6;
+    public final int pickupOnlyType = 7;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
