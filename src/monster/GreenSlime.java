@@ -2,6 +2,9 @@ package monster;
 
 import entity.Entity;
 import main.GamePanel;
+import object.BronzeCoin;
+import object.Heart;
+import object.ManaCrystal;
 import object.Rock;
 
 import java.util.Random;
@@ -85,5 +88,20 @@ public class GreenSlime extends Entity {
 
         actionLockCounter = 0;
         direction = gp.player.direction;
+    }
+
+    public void checkDrop() {
+
+        int i = new Random().nextInt(100) + 1;
+
+        if(i < 50) {
+            dropItem(new BronzeCoin(gp));
+        }
+        if(i >= 50 && i < 75) {
+            dropItem(new Heart(gp));
+        }
+        if(i >= 75 && i < 100) {
+            dropItem(new ManaCrystal(gp));
+        }
     }
 }
